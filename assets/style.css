@@ -1,11 +1,15 @@
-/* check the marvel colours and match them to the title and font etc do this under a * (all inclusive) for font colour, background colour etc
-*/
+*{
+
+}
+.nav-wrapper{
+  background-color: #E2001A;
+  color: white;
+}
   .parallax-container {
       height: "500px";
+      background-image: url(./pictures/marvel-characters.jpg);
     }
 
 .body{
-    background-image: url("./marvel-characters.jpg");
-    background-repeat: no-repeat, repeat;
-    background-color: red;
+   
 }
