@@ -23,7 +23,7 @@ landingbtn.addEventListener("click", function(event){
     if (groupChoice == "x-men"){
         //run function for x-men
     }
-});
+  });
 
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
@@ -89,5 +89,4 @@ function searchArray (array){
 //Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
 var searchID = guardiansID;
 searchArray (searchID);
-
 ///////
