@@ -1,6 +1,7 @@
 const landingbtn = document.getElementById("center-btn");
 const nav = document.getElementById("header");
 const cardContainer = document.getElementById("charcter-card-container");
+var searchID = "";
 
 cardContainer.classList.add("hide");
 
@@ -12,16 +13,32 @@ landingbtn.addEventListener("click", function(event){
     const groupChoice = choice.getAttribute("data-character");
     
     if (groupChoice == "avengers"){
-        //run functions for avenger
+      //Sets Search ID to avengers array
+      var searchID = avengersID;
+      //Searches Avengers Array 
+      searchArray (searchID);
+        
     }
     if (groupChoice == "villans"){
-        //run function for villans
+      //Sets Search ID to Villains array
+      var searchID = villainsID;
+      //Searches Villains Array 
+      searchArray (searchID);
+        
     }
     if (groupChoice == "guardians"){
-        //run function for guardians
+      //Sets Search ID to Guardians array
+      var searchID = guardiansID;
+      //Searches Guardians Array 
+      searchArray (searchID);
+       
     }
     if (groupChoice == "x-men"){
-        //run function for x-men
+      //Sets Search ID to X-men array
+      var searchID = xmenID;
+      //Searches XMen Array 
+      searchArray (searchID);
+        
     }
 });
 
@@ -86,8 +103,8 @@ function searchArray (array){
   searchMarvelAPI (array[i]);
 }};
 
-//Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
-var searchID = guardiansID;
-searchArray (searchID);
+
+
+
 
 ///////
