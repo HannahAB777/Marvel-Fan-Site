@@ -1,2 +1,57 @@
-/* check the marvel colours and match them to the title and font etc do this under a * (all inclusive) for font colour, background colour etc
+*{ box-sizing: border-box;
+  border-radius: 10px;
+}
 
+.hide{
+  display: none;
+}
+body{
+  height: 100vh;
+  width: 100vw;
+  background-color: #E2001A ;
+}
+
+h4{
+  text-align: center;
+}
+#center-btn{
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+border: #E2001A 10px solid;
+height: 100%;
+width: 100%;
+}
+
+.nav-wrapper{
+  background-color: #E2001A;
+  color: white;
+}
+.img-container{
+  flex-grow: 1;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+}
+
+#img-1{
+  background-image: url(./images/avengers_comic.jpg);
+}
+#img-2{
+  background-image: url(./images/marvel\ villans.jpg);
+}
+#img-3{
+  background-image: url(./images/marvel\ guardians.jpg);
+}
+#img-4{
+  background-image: url(./images/marvel\ x-men.jpg);
+}
+
+.img-container:hover{
+  border: black solid 10px;
+}
+#charcter-card-container{
+  height: 200px;
+  width: 200px;
+  background-color: black;
+}
