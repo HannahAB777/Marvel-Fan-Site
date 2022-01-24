@@ -40,7 +40,7 @@ landingbtn.addEventListener("click", function(event){
       searchArray (searchID);
         
     }
-});
+  });
 
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
@@ -103,8 +103,15 @@ function searchArray (array){
   searchMarvelAPI (array[i]);
 }};
 
+<<<<<<< HEAD
 
 
 
 
 ///////
+=======
+//Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
+var searchID = guardiansID;
+searchArray (searchID);
+///////
+>>>>>>> 0a70989f07a5c76173726a1fbb0e1b205a12ef63
