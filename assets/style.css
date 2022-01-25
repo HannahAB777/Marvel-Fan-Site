@@ -5,6 +5,11 @@
 .hide{
   display: none;
 }
+
+.card-sizing{
+  height: 400px;
+  width: 400px;
+}
 body{
   display: flex;
     min-height: 100vh;
