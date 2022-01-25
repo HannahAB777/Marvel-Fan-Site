@@ -1,6 +1,6 @@
 const landingbtn = document.getElementById("center-btn");
 const nav = document.getElementById("header");
-const cardContainer = document.getElementById("charcter-card-container");
+const cardContainer = document.getElementById("character-card-container");
 var searchID = "";
 var movieArray = [];
 const headerDiv = document.getElementById("input-field");
@@ -9,6 +9,7 @@ const navBtns = document.getElementById("choice-btn");
 cardContainer.classList.add("hide");
 
 landingbtn.addEventListener("click", function(event){
+    event.preventDefault();
     landingbtn.classList.add("hide");
     nav.classList.add("hide");
     navBtns.classList.remove("hide");
@@ -58,132 +59,71 @@ const xmenID = [1009496, 1009733, 1009175, 1009257, 1009718, 1009313, 1009629, 1
 const guardiansID = [1010734, 1010763, 1010735, 1010743, 1010744, 1011026, 1010365, 1011542, 1009477, 1011353, 1010354]
 //////
 
+var wrapper = {
 // Avengers Movie Search vars
-var spidermanMovies = ["Avengers Infinity", "Avengers Endgame", "Captain America Civil", "Spider-Man Homecoming", "Spider-man Far", "Spider-Man No", "Spider-Man", "Spider-Man 2", "Spider-man 3", "Amazing Spider-man 2", "Amazing Spider-man"]
-var ironmanMovies = ["Iron-Man", "Iron-man-2", "Iron-man-3", "Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain America Civil", "Spider-Man Homecoming"]
-var hulkMovies = ["The Incredible Hulk", "Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor Ragnarok" ]
-var thorMovies = ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor", "Thor The", "Thor Ragnarok", "Captain America Civil"]
-var captainamericaMovies = ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain-America", "Captain America The Winter", "Captain America Civil"]
-var blackwidowMovies = ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Iron-man-2", "Black Widow", "Captain America Civil"] 
-var hawkeyeMovies = ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor"]
-var blackpantherMovies = ["Black Panther", "Avengers Infinity", "Avengers Endgame"]
-var doctorstrangeMovies = ["Avengers Infinity", "Avengers Endgame", "Doctor Strange", "Spider-Man No"]
-var antmanMovies = ["Avengers Infinity", "Avengers Endgame", "Ant-Man", "Ant-man and"] 
-var captainmarvelMovies = ["Avengers Endgame", "Marvel"]
-var nickfuryMovies = ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Marvel"]
-var scarletwitchMovies = ["Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain America Civil" ]
-var visionMovies  = ["Avengers Age", "Avengers Infinity", "Captain America Civil", "Avengers Endgame"]
+  spidermanMovies: ["Avengers Infinity", "Avengers Endgame", "Captain America Civil", "Spider-Man Homecoming", "Spider-man Far", "Spider-Man No", "Spider-Man", "Spider-Man 2", "Spider-man 3", "Amazing Spider-man 2", "Amazing Spider-man"],
+  ironmanMovies: ["Iron-Man", "Iron-man-2", "Iron-man-3", "Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain America Civil", "Spider-Man Homecoming"],
+  hulkMovies: ["The Incredible Hulk", "Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor Ragnarok" ],
+  thorMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor", "Thor The", "Thor Ragnarok", "Captain America Civil"],
+  captainamericaMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain-America", "Captain America The Winter", "Captain America Civil"],
+  blackwidowMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Iron-man-2", "Black Widow", "Captain America Civil"] ,
+  hawkeyeMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor"],
+  blackpantherMovies: ["Black Panther", "Avengers Infinity", "Avengers Endgame"],
+  doctorstrangeMovies: ["Avengers Infinity", "Avengers Endgame", "Doctor Strange", "Spider-Man No"],
+  antmanMovies: ["Avengers Infinity", "Avengers Endgame", "Ant-Man", "Ant-man and"], 
+  captainmarvelMovies: ["Avengers Endgame", "Marvel"],
+  nickfuryMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Marvel"],
+  scarletwitchMovies: ["Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain America Civil" ],
+  visionMovies : ["Avengers Age", "Avengers Infinity", "Captain America Civil", "Avengers Endgame"],
 
-// Villains Movie Search vars
-var thanosMovies = ["Avengers", "Avengers Infinity", "Avengers Endgame"]
-var lokiMovies = ["Avengers", "Thor The", "Thor Ragnarok", "Avengers Infinity", "Avengers Endgame"]
-var ultronMovies = ["Avengers Age"]
-var eddiebrockMovies = ["Venom", "Venom Let", "Spider-man 3"]
-var helaMovies = ["Thor Ragnarok"]
-var killmongerMovies = ["Black Panther"]
-var greengoblinMovies = ["Spider-Man No"]
-var doctoroctopusMovies = ["Spider-Man No", "Spider-Man 2" ]
-var ronanMovies = ["Marvel", "Guardians Of The"]
-var mysterioMovies = ["Spider-man Far"]
-var vultureMovies = ["Spider-Man Homecoming"]
-var egoMovies  = ["Guardians Of the Galaxy Vol"]
+  // Villains Movie Search vars
+  thanosMovies: ["Avengers", "Avengers Infinity", "Avengers Endgame"],
+  lokiMovies: ["Avengers", "Thor The", "Thor Ragnarok", "Avengers Infinity", "Avengers Endgame"],
+  ultronMovies: ["Avengers Age"],
+  eddiebrockMovies: ["Venom", "Venom Let", "Spider-man 3"],
+  helaMovies: ["Thor Ragnarok"],
+  killmongerMovies: ["Black Panther"],
+  greengoblinMovies: ["Spider-Man No"],
+  doctoroctopusMovies: ["Spider-Man No", "Spider-Man 2" ],
+  ronanMovies: ["Marvel", "Guardians Of The"],
+  mysterioMovies: ["Spider-man Far"],
+  vultureMovies: ["Spider-Man Homecoming"],
+  egoMovies : ["Guardians Of the Galaxy Vol"],
 
-// Guardians Movie Search vars
-var peterquillMovies = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var gamoraMovies = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var draxMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var grootMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var rocketracoonMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var mantisMovies  = ["Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var nebulaMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"]
-var yonduMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol"]
-var novaMovies  = ["Guardians Of The", "Guardians Of the Galaxy Vol"]
-var cosmoMovies  = ["Guardians Of The"]
-var adamwarlockMovies  = ["Guardians Of the Galaxy Vol"]
+  // Guardians Movie Search vars
+  peterquillMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  gamoraMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  draxMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  grootMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  rocketracoonMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  mantisMovies : ["Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  nebulaMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  yonduMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol"],
+  novaMovies : ["Guardians Of The", "Guardians Of the Galaxy Vol"],
+  cosmoMovies : ["Guardians Of The"],
+  adamwarlockMovies : ["Guardians Of the Galaxy Vol"],
 
-// X-Men Movie Search vars
-var charlesxavierMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var cyclopsMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var wolverineMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix", "Logan", "The Wolverine", "X-Men Origins"]
-var jeangreyMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var stormMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var beastMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var gambitMovies = ["X-Men Origins"]
-var rogueMovies = ["X-Men", "X2", "X-Men The Last"]
-var kittyprydeMovies = ["X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var deadpoolMovies = ["Deadpool", "Deadpool 2"]
-var mystiqueMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
-var magnetoMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
+  // X-Men Movie Search vars
+  charlesxavierMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  cyclopsMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  wolverineMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix", "Logan", "The Wolverine", "X-Men Origins"],
+  jeangreyMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  stormMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  beastMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  gambitMovies: ["X-Men Origins"],
+  rogueMovies: ["X-Men", "X2", "X-Men The Last"],
+  kittyprydeMovies: ["X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  deadpoolMovies: ["Deadpool", "Deadpool 2"],
+  mystiqueMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  magnetoMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  rocketraccoonMovies: [] // TODO ADD elements
+};
 
-
+let icon ="";
+let name = "";
+let description = ""
 //DOT POINT 2 - COMPLETE, ADD IN #3
 function searchMarvelAPI (charID) {
-
-// <div class="row">
-//<div class="col s12 m7">
-//<div class="card">
-//  <div class="card-image">
-//    <img src="images/sample-1.jpg">
-//    <span class="card-title">Card Title</span>
-//  </div>
-//  <div class="card-content">
-//    <p>I am a very simple card. I am good at containing small bits of information.
-//    I am convenient because I require little markup to use effectively.</p>
-//  </div>
-//  <div class="card-action">
-//    <a href="#">This is a link</a>
-//  </div>
-//</div>
-//</div>
-//</div>
-function createCard(icon, name, description, movie, year, plot, IMBD, rating, link){
-  const card = document.createElement("div");
-  card.classList.add("row");
-  const cardBorder = document.createElement("div");
-  cardBorder.classList.add("col s12 m7");
-  card.appendChild(cardBorder);
-  const cardEl = document.createElement("div");
-  cardEl.classList.add("card");
-  cardBorder.appendChild(cardEl);
-  const imageDiv = document.createElement("div");
-  imageDiv.classList.add("card-image");
-  cardEl.appendChild(imageDiv);
-  const heroImage = document.createElement("img");
-  heroImage.setAttribute("src", icon);
-  imageDiv.appendChild(img);
-  const heroName = document.createElement("span");
-  heroName.classList.add("card-title");
-  heroName.textContent = name;
-  cardEl.appendChild(heroName);
-  const cardContent = document.createElement("div");
-  cardContent.classList.add("card-content");
-  cardEl.appendChild(cardContent);
-  const heroDescription = document.createElement("p");
-  heroDescription.textContent = description;
-  const movieInfo = document.createElement("ul");
-  cardContent.appendChild(movieInfo);
-  const movieTitle = document.createElement("li");
-  movieTitle.textContent = movie;
-  movieInfo.appendChild(movieTitle);
-  const movieYear = document.createElement("li");
-  movieYear.textContent = year;
-  movieInfo.appendChild(movieYear);
-  const plotShort = document.createElement("li");
-  plotShort.textContent = plot;
-  movieInfo.appendChild(plotShort);
-  const IMBDId = document.createElement("li");
-  IMBDId.textContent= IMBD;
-  movieInfo.appendChild(IMBDId);
-  const IMBDrating = document.createElement("li");
-  IMBDrating.textContent = rating;
-  movieInfo.appendChild(IMBDrating);
-  const cardAction = document.createElement("div");
-  cardAction.classList.add("card-action");
-  cardEl.appendChild(cardAction);
-  const externalLink = document.createElement("a");
-  externalLink.setAttribute("href",link);
-}
-
 
 fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257', {
   method: 'GET', //GET is the default.
@@ -196,31 +136,37 @@ fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey
   .then(function (data) {  
     
     //Finds icon Url
-    var iconPath = (data.data.results[0].thumbnail.path)
+    let iconPath = (data.data.results[0].thumbnail.path)
     //Applys file type    
-    var icon = iconPath + ".jpg";   
+    let icon = iconPath + ".jpg";   
     //Loads Char name from API query
-    var name = (data.data.results[0].name);  
+    let name = (data.data.results[0].name);  
     //Checks if description for character exists
-    if (data.data.results[0].description) {  
+    //if (data.data.results[0].description) {  
     //Loads description
-    var description =  (data.data.results[0].description)       
-    }  
+    let description =  (data.data.results[0].description)       
+    //}
     //Finds Marvel Wiki URL
-    var link = (data.data.results[0].urls[1].url);         
+    let link = (data.data.results[0].urls[1].url);         
     //MOVIE API STUFF
     //converts name to lowercase
-    var texty = (data.data.results[0].name).toLowerCase();
+    let texty = (data.data.results[0].name).toLowerCase();
     //takes name before ()
-    var texty2 = texty.split("(")[0];
+    let texty2 = texty.split("(")[0];
     //removes spaces
-    var texty3 = texty2.replace(/ /g, "");
+    let texty3 = texty2.replace(/ /g, "");
     //removes hyphens and adds Movies string
-    var texty4 = texty3.replace("-", "") + "Movies";
+    let texty4 = texty3.replace("-", "") + "Movies";
     //changes from string to variable
-    var movieArray = window[texty4]; 
-    //runs search movies array    
-    searchmoviesArray (movieArray);
+    let movieArray = wrapper[texty4];
+    if (movieArray === undefined) {
+      console.log("missign key", texty4);
+    } else {
+      //runs search movies array    
+      searchmoviesArray (movieArray);
+      createCard(icon, name, description);
+    }
+    
   });
 
 };
@@ -249,17 +195,17 @@ fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     console.log(data);
 
     //Sets movie from data
-    var movie =  (data.Title) 
+    var movie =  (data.Title); 
     //Sets year from data
-    var year =  (data.Year)    
+    var year =  (data.Year);   
     //Finds plot in data
-    var plot =  (data.Plot)   
+    var plot =  (data.Plot);   
     //Finds IMDB ID
-    var movie =  (data.imbdID)
+    var IMBDID =  (data.imbdID);
     //Converts ID to URL
-    var IMBD = "https://imdb.com/title/" + movie
+    var IMBD = "https://imdb.com/title/" + IMBDID;
     //Finds rating in data
-    var rating =  (data.imdbRating)
+    var rating =  (data.imdbRating);
     //Creates poster div
     const moviePoster = document.createElement("img");
     //Finds poster url in data
@@ -267,7 +213,8 @@ fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     //Applies src attribute and makes icon display   
     moviePoster.setAttribute("src", poster);
     //Appends movieInfo
-    movieInfo.appendChild(moviePoster);
+    //movieInfo.appendChild(moviePoster); movie info needs to be defined
+    movieCard(movie, movie, year, plot, '', rating, IMBD);
 
   });
 };
@@ -281,62 +228,71 @@ function searchmoviesArray (array){
 
 
 
-function createCard(icon, name, description){
+function createCard(heroImg, heroID, heroScript){
   const card = document.createElement("div");
-  card.classList.add("row");
+  card.classList.add("row", "card-sizing");
+  cardContainer.appendChild(card);
+
+  
   const cardBorder = document.createElement("div");
-  cardBorder.classList.add("col s12 m7");
+  cardBorder.classList.add("col","s12", "m7");
   card.appendChild(cardBorder);
+  
   const cardEl = document.createElement("div");
   cardEl.classList.add("card");
   cardBorder.appendChild(cardEl);
+  
   const imageDiv = document.createElement("div");
   imageDiv.classList.add("card-image");
   cardEl.appendChild(imageDiv);
+  
   const heroImage = document.createElement("img");
-  heroImage.setAttribute("src", icon);
+  heroImage.setAttribute("src", heroImg);
   imageDiv.appendChild(heroImage);
+  
   const heroName = document.createElement("span");
   heroName.classList.add("card-title");
-  heroName.textContent = name;
+  heroName.textContent = heroID;
   cardEl.appendChild(heroName);
+  
   const cardContent = document.createElement("div");
   cardContent.classList.add("card-content");
   cardEl.appendChild(cardContent);
+  
   const heroDescription = document.createElement("p");
-  heroDescription.textContent = description;
-
+  heroDescription.textContent = heroScript;
+  cardContent.appendChild(heroDescription);
 }
 
-function movieCard(cardContent, movie, year, plot, IMBD, rating, link) {
+function movieCard(cardContent, movies, yearMade, story, IMBDData, movieRating, xLink) {
 
   const movieInfo = document.createElement("ul");
-  cardContent.appendChild(movieInfo);
+  cardContainer.appendChild(movieInfo);
   const movieTitle = document.createElement("li");
-  movieTitle.textContent = movie;
+  movieTitle.textContent = movies;
   movieInfo.appendChild(movieTitle);
   const movieYear = document.createElement("li");
-  movieYear.textContent = year;
+  movieYear.textContent = yearMade;
   movieInfo.appendChild(movieYear);
   const plotShort = document.createElement("li");
-  plotShort.textContent = plot;
+  plotShort.textContent = story;
   movieInfo.appendChild(plotShort);
   const IMBDId = document.createElement("li");
-  IMBDId.textContent= IMBD;
+  IMBDId.textContent= IMBDData;
   movieInfo.appendChild(IMBDId);
   const IMBDrating = document.createElement("li");
-  IMBDrating.textContent = rating;
+  IMBDrating.textContent = movieRating;
   movieInfo.appendChild(IMBDrating);
   const cardAction = document.createElement("div");
   cardAction.classList.add("card-action");
   cardEl.appendChild(cardAction);
   const externalLink = document.createElement("a");
-  externalLink.setAttribute("href",link);
+  externalLink.setAttribute("href",xLink);
+  //append
   
 }
 
 //boop
-=======
 
 //Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
 var searchID = guardiansID;
