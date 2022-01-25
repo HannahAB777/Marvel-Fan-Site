@@ -9,19 +9,14 @@ body{
   display: flex;
     min-height: 100vh;
     flex-direction: column;
-   background-color: #E2001A ;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
+  background-color: #E2001A ;
 }
 #header{
   border: black 5px solid;
   height: fit-content;
   width: 100vw;
 }
+
 h4{
   text-align: center;
 }
