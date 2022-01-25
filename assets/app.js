@@ -124,87 +124,20 @@ fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey
     return response.json();
   })
   .then(function (data) {  
-    //Creates a card for information
-    const card = document.createElement("div");
-    //Adds row class
-    card.classList.add("row");
- 
-    //Creates a card border
-    const cardBorder = document.createElement("div");
-    //Adds class to the border
-    cardBorder.classList.add("col-s12-m7");
-    //Appends to Card
-    card.appendChild(cardBorder);
-
-    //Creates card Element
-    const cardEl = document.createElement("div");
-    //Adds class card
-    cardEl.classList.add("card");
-    //Appends to Card Border
-    cardBorder.appendChild(cardEl);
-
-    //  NOT SURE
-    const cardAction = document.createElement("div");
-    cardAction.classList.add("card-action");
-    cardEl.appendChild(cardAction);
-
-    //Creates Image Div
-    const imageDiv = document.createElement("div");
-    //Adds class Card-Image
-    imageDiv.classList.add("card-image");
-    //Appends to Card 
-    cardEl.appendChild(imageDiv);
-
-    //Creates variabe for the img
-    const heroImage = document.createElement("img");
+    
     //Finds icon Url
     var iconPath = (data.data.results[0].thumbnail.path)
     //Applys file type    
-    var icon = iconPath + ".jpg";
-    //Applies src attribute and makes icon display   
-    heroImage.setAttribute("src", icon);
-    //Appends to Card Img Div
-    imageDiv.appendChild(heroImage);
-
-    //Creates a title for the hero's name
-    const heroName = document.createElement("span");
-    //Adds card-title class
-    heroName.classList.add("card-title");
+    var icon = iconPath + ".jpg";   
     //Loads Char name from API query
-    var name = (data.data.results[0].name)
-    //Sets name content
-    heroName.textContent = name;
-    //Appends to Card
-    cardEl.appendChild(heroName);
-
-    //Creates a div for the card content
-    const cardContent = document.createElement("div");
-    globalThis.cardContent = cardContent
-    //Adds class card-content
-    cardContent.classList.add("card-content");
-    //Appends to card element
-    cardEl.appendChild(cardContent);   
-
+    var name = (data.data.results[0].name);  
     //Checks if description for character exists
-    if (data.data.results[0].description) {
-    //Creates p for description
-    const heroDescription = document.createElement("p");
+    if (data.data.results[0].description) {  
     //Loads description
-    var description =  (data.data.results[0].description)
-    //Sets Description
-    heroDescription.textContent = description;
-    //Appends to Card content
-    cardContent.appendChild(heroDescription);     
-    }
-    
-    const externalLink = document.createElement("a");
+    var description =  (data.data.results[0].description)       
+    }  
     //Finds Marvel Wiki URL
-    var link = (data.data.results[0].urls[1].url);
-    //Sets URL
-    externalLink.setAttribute("href",link);
-    //Appends to card content
-    cardContent.appendChild(externalLink);  
-       
+    var link = (data.data.results[0].urls[1].url);         
     //MOVIE API STUFF
     //converts name to lowercase
     var texty = (data.data.results[0].name).toLowerCase();
@@ -244,60 +177,18 @@ fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
   .then(function (data) {
     console.log(data);
 
-    //const cardContent = document.querySelectorAll(card-content)[i]
-
-    //Creates movie info list
-    const movieInfo = document.createElement("ul");
-    //Appends to card content
-    globalThis.cardContent.appendChild(movieInfo);
-
-    //Creates movie title element
-    const movieTitle = document.createElement("li");
     //Sets movie from data
-    var movie =  (data.Title)
-    //Sets movie title content
-    movieTitle.textContent = movie;
-    //Appends to movie info
-    movieInfo.appendChild(movieTitle);
-
-    //Creates movie year element
-    const movieYear = document.createElement("li");
+    var movie =  (data.Title) 
     //Sets year from data
-    var year =  (data.Year)
-    //Sets movie year
-    movieYear.textContent = year;
-    //Appends to movie info
-    movieInfo.appendChild(movieYear);
-    
-    //Creates Plot element
-    const plotShort = document.createElement("li");
+    var year =  (data.Year)    
     //Finds plot in data
-    var plot =  (data.Plot)
-    //Sets plot elemtent text
-    plotShort.textContent = plot;
-    //Appends to movie info
-    movieInfo.appendChild(plotShort);
-
-    //Creates URL element for IMDB URL
-    const IMBDId = document.createElement("a");
+    var plot =  (data.Plot)   
     //Finds IMDB ID
     var movie =  (data.imbdID)
     //Converts ID to URL
     var IMBD = "https://imdb.com/title/" + movie
-    //Sets URL
-    IMBDId.setAttribute("href",IMBD);
-    //Appends to movie info
-    movieInfo.appendChild(IMBDId);
-
-    //Creates Rating element
-    const IMBDrating = document.createElement("li");
     //Finds rating in data
     var rating =  (data.imdbRating)
-    //Sets rating
-    IMBDrating.textContent = rating;
-    //Appends to movie info
-    movieInfo.appendChild(IMBDrating);
-
     //Creates poster div
     const moviePoster = document.createElement("img");
     //Finds poster url in data
@@ -333,7 +224,7 @@ function createCard(icon, name, description){
   cardEl.appendChild(imageDiv);
   const heroImage = document.createElement("img");
   heroImage.setAttribute("src", icon);
-  imageDiv.appendChild(img);
+  imageDiv.appendChild(heroImage);
   const heroName = document.createElement("span");
   heroName.classList.add("card-title");
   heroName.textContent = name;
