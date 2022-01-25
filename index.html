@@ -1,49 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/style.css">
-
-    <title>Marvel Fan Facts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap" rel="stylesheet">
+    <title>Marvel Fanclub</title>
 </head>
-
 <body>
+    <nav id= "choice-btn"class="header hide">
+        <div class="nav-wrapper">
+          <ul class="hide-on-med-and-down">
+            <li><a data-character="avengers" class="waves-effect waves-light btn-large">Avengers</a></li>
+            <li><a data-character="villans" class="waves-effect waves-light btn-large">Villans</a></li>
+            <li><a data-character="guardians" class="waves-effect waves-light btn-large">Guardians of the Galaxy</a></li>
+            <li><a data-character="x-men" class="waves-effect waves-light btn-large">X-Men</a></li>
+          </ul>
+        </div>
+      </nav>
     <!--navbar with drop down pick a framework thats neat and responsive-->
-
-    <nav id = "header">
+    <nav id = "header" class="header">
         <div class="nav-wrapper">
             <form>
-                <div class="input-field" >
-                <h4>Welcome to the Marvel Fanclub!</h4>  
+                <div class="input-field">
+                    <h4>WELCOME TO THE MARVEL FANCLUB</h4>
                 </div>
             </form>
         </div>
     </nav>
     <!--container for results-->
-    
-<div id ="center-btn">
-    
-        <div id="img-1"data-character= "avengers" class="btn btn-avengers img-container"></div>
-        <div id="img-2"data-character= "villans" class="btn btn-villans img-container"></div>
-        <div id="img-3"data-character= "guardians" class="btn btn-guardians img-container"></div>
-        <div id="img-4"data-character= "x-men" class="btn btn-x-men img-container"></div>
+    <div id="center-btn">
+        <div class="btnBtn">
+        <input type="image" id="img-1" data-character="avengers" src="./assets/images/Avengers-button.png" class="saveBtn btn btn-avengers img-container"/>
+        </div>
+        <div class="btnBtn">
+        <input type="image" id="img-2" data-character="villans" src="./assets/images/Villains-Button.png" class="saveBtn btn btn-avengers img-container"/>
+        </div>
+        <div class="btnBtn">
+        <input type="image" id="img-3" data-character="guardians" src="./assets/images/Xmen-Button.png" class="saveBtn btn btn-avengers img-container"/>
+        </div>
+        <div class="btnBtn">
+        <input type="image" id="img-4" data-character="x-men" src="./assets/images/guardians.png" class="saveBtn btn btn-avengers img-container"/>
+        </div>
+
         
-    <div>
-
-        <container id= "charcter-card-container" class= "">
-
+        <div>
+            <container id="charcter-card-container" class="">
+            <div>cards go here</div>
         </container>
-
-
-    
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./assets/app.js"></script>
-
 </html>

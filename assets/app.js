@@ -1,25 +1,39 @@
+//Finds landing buttons
 const landingbtn = document.getElementById("center-btn");
+//Finds the navbar
 const nav = document.getElementById("header");
+//Finds the card containers
 const cardContainer = document.getElementById("charcter-card-container");
+//variable declared for later
 var searchID = "";
+//variable declared for later
 var movieArray = [];
 
+//Adds hide class to cardContainers
 cardContainer.classList.add("hide");
 
+//On click of a landing button
 landingbtn.addEventListener("click", function(event){
-    landingbtn.classList.add("hide");
-    nav.classList.add("hide");
+  
+  $('document').ready(myMove("img-1"));
+  $('document').ready(myReMove("img-2"));
+  $('document').ready(myReReMove("img-3"));
+  $('document').ready(myReReReMove("img-4"));
+       
+    //Removes hide class from class container
     cardContainer.classList.remove("hide");
+    //Declares choice as event target
     const choice = event.target;
+    //Finds the data attribute of the event target
     const groupChoice = choice.getAttribute("data-character");
     
     if (groupChoice == "avengers"){
       //Sets Search ID to avengers array
       var searchID = avengersID;
       //Searches Avengers Array 
-      searchArray (searchID);
-        
+      searchArray (searchID);        
     }
+
     if (groupChoice == "villans"){
       //Sets Search ID to Villains array
       var searchID = villainsID;
@@ -43,7 +57,74 @@ landingbtn.addEventListener("click", function(event){
     }
   });
 
-//DOT POINT 1
+var id = null;
+function myMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id);
+        landingbtn.classList.add("hide");
+        //Adds hide class to the nav
+        nav.classList.add("hide");
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+
+var id2 = null;
+function myReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id2);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id2);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
+
+var id3 = null;
+function myReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id3);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id3);
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+
+var id4 = null;
+function myReReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id4);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id4);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
+
+//Search ID's
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
 const avengersID = [1009610, 1009368, 1009351, 1009664, 1009220, 1009189, 1009338, 1009187, 1009282, 1010801, 1010338, 1009471, 1009562, 1009697]
 // const villainsID = [Thanos, Loki, Ultron, Venom, Hela, Killmonger, Green Goblin, Doc Ok, Ronan, Mysterio, Vulture, Ego]
@@ -111,20 +192,18 @@ var deadpoolMovies = ["Deadpool", "Deadpool 2"]
 var mystiqueMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
 var magnetoMovies = ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
 
-
-//DOT POINT 2 - COMPLETE, ADD IN #3
+//Marvel API function
 function searchMarvelAPI (charID) {
 
-fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257', {
+  fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257', {
   method: 'GET', //GET is the default.
   credentials: 'same-origin', // include, *same-origin, omit
   redirect: 'follow', // manual, *follow, error
-})
+  })
   .then(function (response) {
     return response.json();
   })
-  .then(function (data) {  
-    
+  .then(function (data) {      
     //Finds icon Url
     var iconPath = (data.data.results[0].thumbnail.path)
     //Applys file type    
@@ -152,7 +231,6 @@ fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey
     //runs search movies array    
     searchmoviesArray (movieArray);
   });
-
 };
 
 //For loop to run API requests for every char in array
@@ -162,7 +240,6 @@ function searchArray (array){
     
   searchMarvelAPI (array[i]);
 }};
-///////
 
 //OMBD search function
 function searchOMBDAPI (movieString) {
@@ -197,7 +274,6 @@ fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     moviePoster.setAttribute("src", poster);
     //Appends movieInfo
     movieInfo.appendChild(moviePoster);
-
   });
 };
 
@@ -207,8 +283,6 @@ function searchmoviesArray (array){
     //Runs API search for Movie Queries
     searchOMBDAPI (array[i]);
 }};
-
-
 
 function createCard(icon, name, description){
   const card = document.createElement("div");
@@ -234,7 +308,6 @@ function createCard(icon, name, description){
   cardEl.appendChild(cardContent);
   const heroDescription = document.createElement("p");
   heroDescription.textContent = description;
-
 }
 
 function movieCard(cardContent, movie, year, plot, IMBD, rating, link) {
@@ -260,8 +333,7 @@ function movieCard(cardContent, movie, year, plot, IMBD, rating, link) {
   cardAction.classList.add("card-action");
   cardEl.appendChild(cardAction);
   const externalLink = document.createElement("a");
-  externalLink.setAttribute("href",link);
-  
+  externalLink.setAttribute("href",link);  
 }
 
 //boop
