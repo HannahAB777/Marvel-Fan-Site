@@ -1,13 +1,17 @@
 const landingbtn = document.getElementById("center-btn");
 const nav = document.getElementById("header");
 const cardContainer = document.getElementById("charcter-card-container");
+const headerDiv = document.getElementById("input-field");
+const navBtns = document.getElementById("choice-btn");
 
 cardContainer.classList.add("hide");
 
 landingbtn.addEventListener("click", function(event){
     landingbtn.classList.add("hide");
     nav.classList.add("hide");
+    navBtns.classList.remove("hide");
     cardContainer.classList.remove("hide");
+    
     const choice = event.target;
     const groupChoice = choice.getAttribute("data-character");
     
