@@ -8,6 +8,8 @@ const cardContainer = document.getElementById("charcter-card-container");
 var searchID = "";
 //variable declared for later
 var movieArray = [];
+const headerDiv = document.getElementById("input-field");
+const navBtns = document.getElementById("choice-btn");
 
 //Adds hide class to cardContainers
 cardContainer.classList.add("hide");
@@ -23,7 +25,7 @@ landingbtn.addEventListener("click", function(event){
     //Removes hide class from class container
     cardContainer.classList.remove("hide");
     //Declares choice as event target
-    const choice = event.target;
+
     //Finds the data attribute of the event target
     const groupChoice = choice.getAttribute("data-character");
     
@@ -241,6 +243,8 @@ function searchArray (array){
   searchMarvelAPI (array[i]);
 }};
 
+///////
+
 //OMBD search function
 function searchOMBDAPI (movieString) {
 fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
@@ -337,3 +341,9 @@ function movieCard(cardContent, movie, year, plot, IMBD, rating, link) {
 }
 
 //boop
+
+
+//Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
+var searchID = guardiansID;
+searchArray (searchID);
+
