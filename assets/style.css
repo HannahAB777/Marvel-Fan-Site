@@ -17,8 +17,8 @@
   color: #E2001A;
 }
 .card-sizing{
-  height: 400px;
-  width: 400px;
+  height: 1600px;
+  width: 800px;
 }
 body{
     display: flex;
@@ -92,11 +92,11 @@ align-self: center;
 .img-container:hover{
   border: black solid 10px;
 }
-#charcter-card-container{
-  flex-grow: 1;
-  width: fit-content;
-  height: fit-content;
+#character-card-container{  
+  width: 100%;  
   background-color: black;
+  display: flex;
+  flex-direction: row; 
 }
 
 .btnBtn { 
@@ -108,7 +108,12 @@ align-self: center;
 
 .card-cols{
   flex-grow: 1;
-  flex-direction: row;
+  flex-direction: column;
+  flex-basis: 40%;
+  flex-wrap: wrap;
+  padding: 10px;
+  display: flex;
+  justify-items: center;
 }
 
 #movie-card{
