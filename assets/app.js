@@ -16,8 +16,6 @@ landingbtn.addEventListener("click", function (event) {
   $('document').ready(myReMove("img-2"));
   $('document').ready(myReReMove("img-3"));
   $('document').ready(myReReReMove("img-4"));
-  
-      
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -54,11 +52,9 @@ landingbtn.addEventListener("click", function (event) {
 
     searchArray(searchID);
   }
-
-  }
-
-  
+  }  
 });
+
 //IMG 1 Slide
 var id = null;
 function myMove(picture) {
@@ -131,12 +127,14 @@ function myReReReMove(picture) {
 // click event for header shown on second page
 navBtns.addEventListener("click", function (event) {
   event.preventDefault();
+  removeAllChildNodes(movieCol);
+  removeAllChildNodes(cardCol);
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-} removeAllChildNodes(movieCol);
-removeAllChildNodes(cardCol);
+  }          
+
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -176,11 +174,11 @@ removeAllChildNodes(cardCol);
   }
 });
 
+  function removeHides () {
+    navBtns.classList.remove("hide");
+    cardContainer.classList.remove("hide");
 
-function removeHides () {
-  navBtns.classList.remove("hide");
-   cardContainer.classList.remove("hide");
-}
+  }
 
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
@@ -268,21 +266,20 @@ function searchMarvelAPI(charID) {
       return response.json();
     })
     .then(function (data) {
-      
 
       //Finds icon Url
       let iconPath = (data.data.results[0].thumbnail.path)
       //Applys file type    
       let icon = iconPath + ".jpg";
       //Loads Char name from API query
-      let name = (data.data.results[0].name);
+      let name = "Name: " + (data.data.results[0].name);
       //Checks if description for character exists
       //if (data.data.results[0].description) {  
       //Loads description
-      let description = (data.data.results[0].description)
+      let description = "Description: " + (data.data.results[0].description)
       //}
       //Finds Marvel Wiki URL
-      let link = (data.data.results[0].urls[1].url);
+      let link = "Marvel Wiki: " +(data.data.results[0].urls[1].url);
       //MOVIE API STUFF
       //converts name to lowercase
       let texty = (data.data.results[0].name).toLowerCase();
@@ -299,7 +296,7 @@ function searchMarvelAPI(charID) {
       } else {
         //runs search movies array    
         searchmoviesArray(movieArray);
-        createCard(icon, name, description);
+        createCard(icon, name, description, link);
       }
 
     });
@@ -310,8 +307,8 @@ function searchMarvelAPI(charID) {
 function searchArray(array) {
   for (var i = 0; i < array.length; i++) {
     //Runs API search for individual ID's
-
-    searchMarvelAPI(array[i]);
+    
+     setTimeout(searchMarvelAPI(array[i]),2000);
   }
 }
 
@@ -328,22 +325,20 @@ function searchOMBDAPI(movieString) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-
       
 
       //Sets movie from data
-      var movie = (data.Title);
+      var movie = "Movie Title: " + (data.Title);
       //Sets year from data
-      var year = (data.Year);
+      var year = "Year Released: " + (data.Year);
       //Finds plot in data
-      var plot = (data.Plot);
+      var plot = "Plot Summary: " + (data.Plot);
       //Finds IMDB ID
       var IMBDID = (data.imbdID);
       //Converts ID to URL
-      var IMBD = "https://imdb.com/title/" + IMBDID;
+      var IMBD = "IMDB ULR: " + "https://imdb.com/title/" + IMBDID;
       //Finds rating in data
-      var rating = (data.imdbRating);
+      var rating = "IMDB Rating: " + (data.imdbRating);
       //Creates poster div
       //const moviePoster = document.createElement("img");
       //Finds poster url in data
@@ -360,15 +355,17 @@ function searchOMBDAPI(movieString) {
 
 //For loop to run API requests for every movie
 function searchmoviesArray(array) {
-  for (var i = 0; i < array.length; i++) {
-    //Runs API search for Movie Queries
-    searchOMBDAPI(array[i]);
-  }
+  //Selects ONE random movie for each character
+  var randomChoice = array[Math.floor(Math.random()*array.length)];
+ 
+      //Runs API search for Movie Queries
+    setTimeout(searchOMBDAPI(randomChoice), 2000);
 };
 
 
 
-function createCard(heroImg, heroID, heroScript) {
+
+function createCard(heroImg, heroID, heroScript, heroLink) {
   const card = document.createElement("div");
   card.classList.add("row", "card-sizing");
   cardCol.appendChild(card);
@@ -402,6 +399,10 @@ function createCard(heroImg, heroID, heroScript) {
   const heroDescription = document.createElement("p");
   heroDescription.textContent = heroScript;
   cardContent.appendChild(heroDescription);
+
+  const heroURL = document.createElement("a");
+  heroURL.setAttribute("href", heroLink);
+  cardContent.appendChild(heroURL);
 
   const favBtn = document.createElement("button");
   favBtn.classList.add("fav-btn", "waves-effect", "waves-light","btn-large");
@@ -460,13 +461,24 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
   IMBDrating.textContent = movieRating;
   movieInfo.appendChild(IMBDrating);
 
+
   const movieCardAction = document.createElement("div");
   movieCardAction.classList.add("card-action");
   movieCardEl.appendChild(movieCardAction);
 
   const externalLink = document.createElement("a");
   externalLink.setAttribute("href", xLink);
+  movieInfo.appendChild(externalLink);
   //append
 
 };
+
+
+//For loop to run API requests for every char in array
+function searchArray (array){
+  for (var i= 0; i< array.length; i++ ){
+    //Runs API search for individual ID's
+  searchMarvelAPI (array[i]);
+}};
+
 

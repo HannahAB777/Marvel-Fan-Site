@@ -12,6 +12,7 @@
     <title>Marvel Fanclub</title>
 </head>
 <body>
+    <!--navbar for second page showing btns for hero options and favourites-->
     <nav id= "choice-btn"class="header hide">
         <div class="nav-wrapper">
           <ul class="hide-on-med-and-down">
@@ -19,6 +20,7 @@
             <li><a data-character="villans" class="waves-effect waves-light btn-large">Villans</a></li>
             <li><a data-character="guardians" class="waves-effect waves-light btn-large">Guardians of the Galaxy</a></li>
             <li><a data-character="x-men" class="waves-effect waves-light btn-large">X-Men</a></li>
+            <li><a data-character="favourites" class="waves-effect waves-light btn-large">Favourite Characters</a></li>
           </ul>
         </div>
       </nav>
@@ -41,14 +43,13 @@
         <input type="image" id="img-2" data-character="villans" src="./assets/images/Villains-Button.png" class="saveBtn btn btn-avengers img-container"/>
         </div>
         <div class="btnBtn">
-        <input type="image" id="img-3" data-character="guardians" src="./assets/images/Xmen-Button.png" class="saveBtn btn btn-avengers img-container"/>
+        <input type="image" id="img-3" data-character="x-men" src="./assets/images/Xmen-Button.png" class="saveBtn btn btn-avengers img-container"/>
         </div>
         <div class="btnBtn">
-        <input type="image" id="img-4" data-character="x-men" src="./assets/images/guardians.png" class="saveBtn btn btn-avengers img-container"/>
+        <input type="image" id="img-4" data-character="guardians" src="./assets/images/guardians.png" class="saveBtn btn btn-avengers img-container"/>
         </div>
-
-        
-        <div>
+    </div>
+  
             <container id="character-card-container" class="">
                 <div class="card-cols" id= "char-card"></div>
                 <div class="card-cols" id= "movie-card"></div>
