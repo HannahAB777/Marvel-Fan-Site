@@ -1,12 +1,19 @@
 const landingbtn = document.getElementById("center-btn");
 const nav = document.getElementById("header");
 const cardContainer = document.getElementById("character-card-container");
-var searchID = "";
-var movieArray = [];
 const headerDiv = document.getElementById("input-field");
 const navBtns = document.getElementById("choice-btn");
 const cardCol = document.getElementById("char-card");
 const movieCol = document.getElementById("movie-card");
+let favouritesID;
+
+const localStoreChars= localStorage.getItem("charcater");
+const localStoreCharsArray = JSON.parse(localStoreChars);
+if(localStoreChars == null){
+  favouritesID =[];
+}
+else{
+favouritesID = localStoreCharsArray;}
 
 cardContainer.classList.add("hide");
 landingbtn.addEventListener("click", function (event) {
@@ -21,28 +28,28 @@ landingbtn.addEventListener("click", function (event) {
 
   if (groupChoice == "avengers") {
     //Sets Search ID to avengers array
-    var searchID = avengersID;
+    var searchID = charWrapper.avengersID;
     //Searches Avengers Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "villans") {
     //Sets Search ID to Villains array
-    var searchID = villainsID;
+    var searchID = charWrapper.villainsID;
     //Searches Villains Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "guardians") {
     //Sets Search ID to Guardians array
-    var searchID = guardiansID;
+    var searchID = charWrapper.guardiansID;
     //Searches Guardians Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "x-men") {
     //Sets Search ID to X-men array
-    var searchID = xmenID;
+    var searchID = charWrapper.xmenID;
     //Searches XMen Array 
     searchArray(searchID);
 
@@ -69,28 +76,28 @@ removeAllChildNodes(cardCol);
 
   if (groupChoice == "avengers") {
     //Sets Search ID to avengers array
-    var searchID = avengersID;
+    var searchID = charWrapper.avengersID;
     //Searches Avengers Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "villans") {
     //Sets Search ID to Villains array
-    var searchID = villainsID;
+    var searchID = charWrapper.villainsID;
     //Searches Villains Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "guardians") {
     //Sets Search ID to Guardians array
-    var searchID = guardiansID;
+    var searchID = charWrapper.guardiansID;
     //Searches Guardians Array 
     searchArray(searchID);
 
   }
   if (groupChoice == "x-men") {
     //Sets Search ID to X-men array
-    var searchID = xmenID;
+    var searchID = charWrapper.xmenID;
     //Searches XMen Array 
     searchArray(searchID);
 
@@ -101,18 +108,18 @@ removeAllChildNodes(cardCol);
     searchArray(searchID);
   }
 });
-
+var charWrapper = {
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
-const avengersID = [1009610, 1009368, 1009351, 1009664, 1009220, 1009189, 1009338, 1009187, 1009282, 1010801, 1010338, 1009471, 1009562, 1009697]
-// const villainsID = [Thanos, Loki, Ultron, Venom, Hela, Killmonger, Green Goblin, Doc Ok, Ronan, Mysterio, Vulture, Ego]
-const villainsID = [1009652, 1009407, 1009685, 1010787, 1011482, 1011289, 1011435, 1009276, 1010344, 1009464, 1009699, 1011060]
-// const xmenID = [Jean Grey, Prof X, Beast, Cyclops, Wolverine, Gambit, Storm, Rogue, Kitty Pride, Deadpool, Mystique, Magneto]
-const xmenID = [1009496, 1009733, 1009175, 1009257, 1009718, 1009313, 1009629, 1009546, 1009508, 1009268, 1009465, 1009417]
-// const guardiansID = [Star-Lord, Gamora, Drax, Groot, Rocket, Mantis, Nebula, Yondu, Nova, Cosmo, Adam Warlock]
-const guardiansID = [1010734, 1010763, 1010735, 1010743, 1010744, 1011026, 1010365, 1011542, 1009477, 1011353, 1010354]
+ avengersID : [1009610, 1009368, 1009351, 1009664, 1009220, 1009189, 1009338, 1009187, 1009282, 1010801, 1010338, 1009471, 1009562, 1009697],
+//villainsID = [Thanos, Loki, Ultron, Venom, Hela, Killmonger, Green Goblin, Doc Ok, Ronan, Mysterio, Vulture, Ego]
+ villainsID : [1009652, 1009407, 1009685, 1010787, 1011482, 1011289, 1011435, 1009276, 1010344, 1009464, 1009699, 1011060],
+ //xmenID = [Jean Grey, Prof X, Beast, Cyclops, Wolverine, Gambit, Storm, Rogue, Kitty Pride, Deadpool, Mystique, Magneto]
+ xmenID : [1009496, 1009733, 1009175, 1009257, 1009718, 1009313, 1009629, 1009546, 1009508, 1009268, 1009465, 1009417],
+//guardiansID = [Star-Lord, Gamora, Drax, Groot, Rocket, Mantis, Nebula, Yondu, Nova, Cosmo, Adam Warlock]
+ guardiansID : [1010734, 1010763, 1010735, 1010743, 1010744, 1011026, 1010365, 1011542, 1009477, 1011353, 1010354],
+};
 //////
-
 var wrapper = {
   // Avengers Movie Search vars
   spidermanMovies: ["Avengers Infinity", "Avengers Endgame", "Captain America Civil", "Spider-Man Homecoming", "Spider-man Far", "Spider-Man No", "Spider-Man", "Spider-Man 2", "Spider-man 3", "Amazing Spider-man 2", "Amazing Spider-man"],
@@ -179,7 +186,7 @@ let description = ""
 //DOT POINT 2 - COMPLETE, ADD IN #3
 function searchMarvelAPI(charID) {
 
-  fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257', {
+  fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=aec5f13cdc19947b440061114b5f2054&limit=100&ts=1&hash=7104094cf47456d0119fcaf5b347cfde', {
     method: 'GET', //GET is the default.
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -190,13 +197,14 @@ function searchMarvelAPI(charID) {
     .then(function (data) {
 
       //Finds icon Url
-      let iconPath = (data.data.results[0].thumbnail.path)
+      let iconPath = (data.data.results[0].thumbnail.path);
       //Applys file type    
       let icon = iconPath + ".jpg";
       //Loads Char name from API query
       let name = (data.data.results[0].name);
       //Checks if description for character exists
-      //if (data.data.results[0].description) {  
+      //if (data.data.results[0].description) { 
+      let nameID = (data.data.results[0].id); 
       //Loads description
       let description = (data.data.results[0].description)
       //}
@@ -218,7 +226,7 @@ function searchMarvelAPI(charID) {
       } else {
         //runs search movies array    
         searchmoviesArray(movieArray);
-        createCard(icon, name, description);
+        createCard(nameID, icon, name, description);
       }
 
     });
@@ -285,7 +293,7 @@ function searchmoviesArray(array) {
 
 
 
-function createCard(heroImg, heroID, heroScript) {
+function createCard(charSearchID, heroImg, heroID, heroScript) {
   const card = document.createElement("div");
   card.classList.add("row", "card-sizing");
   cardCol.appendChild(card);
@@ -322,6 +330,7 @@ function createCard(heroImg, heroID, heroScript) {
 
   const favBtn = document.createElement("button");
   favBtn.classList.add("fav-btn", "waves-effect", "waves-light","btn-large");
+  favBtn.setAttribute("data-characterID", charSearchID);
   favBtn.textContent = "Favourite";
   cardContent.appendChild(favBtn);
   
@@ -389,7 +398,20 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
 //boop
 
-//Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
-var searchID = guardiansID;
-searchArray(searchID);
 
+
+cardCol.addEventListener("click", function(event){
+  const addFavBtn = $(event.target);
+  const btnData = $(addFavBtn).data("characterid");
+
+  console.log(btnData);
+  
+  favouritesID.push(btnData);
+  
+  searchArray(favouritesID);
+
+  favouritesIDArray = JSON.stringify(favouritesID);
+
+  localStorage.setItem("character", favouritesID);
+
+});
