@@ -5,6 +5,8 @@ var searchID = "";
 var movieArray = [];
 const headerDiv = document.getElementById("input-field");
 const navBtns = document.getElementById("choice-btn");
+const cardCol = document.getElementById("char-card");
+const movieCol = document.getElementById("movie-card");
 
 cardContainer.classList.add("hide");
 landingbtn.addEventListener("click", function (event) {
@@ -59,7 +61,8 @@ navBtns.addEventListener("click", function (event) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-} removeAllChildNodes(cardContainer);
+} removeAllChildNodes(movieCol);
+removeAllChildNodes(cardCol);
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -285,7 +288,7 @@ function searchmoviesArray(array) {
 function createCard(heroImg, heroID, heroScript) {
   const card = document.createElement("div");
   card.classList.add("row", "card-sizing");
-  cardContainer.appendChild(card);
+  cardCol.appendChild(card);
 
 
   const cardBorder = document.createElement("div");
@@ -328,7 +331,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
   const cardFrame = document.createElement("div");
   cardFrame.classList.add("row", "card-sizing");
-  cardContainer.appendChild(cardFrame);
+  movieCol.appendChild(cardFrame);
 
   const movieCardBorder = document.createElement("div");
   movieCardBorder.classList.add("col", "s12", "m7");

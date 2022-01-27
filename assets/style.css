@@ -76,4 +76,13 @@ width: 100%;
   width:fit-content;
   height: fit-content;
   background-color: black;
+  display: flex;
+}
+.card-cols{
+  flex-grow: 1;
+  flex-direction: row;
+}
+
+#movie-card{
+  background-color: cyan;
 }
