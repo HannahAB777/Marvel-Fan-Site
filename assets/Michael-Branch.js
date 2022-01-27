@@ -60,11 +60,7 @@ function searchArray (array){
 var searchID = avengersID;
 searchArray (searchID);
 
-$('document').ready(myMove("img-1"));
-$('document').ready(myReMove("img-2"));
-$('document').ready(myReReMove("img-3"));
-$('document').ready(myReReReMove("img-4"));
-     
+
 
 var id = null;
 function myMove(picture) {
