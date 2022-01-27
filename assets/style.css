@@ -21,13 +21,15 @@
   width: 400px;
 }
 body{
-  display: flex;
+    display: flex;
     min-height: 100vh;
     flex-direction: column;
-  background-color: black ;
+    background-color: black ;
 }
+
 .nav-wrapper{
 justify-content: space-between;
+
 }
 #header{
   border: black 5px solid;
@@ -44,7 +46,12 @@ flex-direction: column;
 flex-grow: 1;
 border: #E2001A 10px solid;
 height: 80%;
-width: 100%;
+width: 90%;
+
+margin-left: auto;
+margin-right: auto;
+align-self: center;
+
 }
 .nav-wrapper{
  background-color: #E2001A;
@@ -56,28 +63,49 @@ width: 100%;
   height: 100%;
   width: 100%;
 }
+
 #img-1{
-  background-image: url(./images/avengers_comic.jpg);
+  border: 5px black solid;
+  padding: 0px;
+  position: absolute;
+  object-fit: contain; 
 }
+
 #img-2{
-  background-image: url(./images/marvel\ villans.jpg);
+  border: 5px black solid;
+  padding: 0px;
+  position: absolute;
+  object-fit: contain; 
 }
 #img-3{
-  background-image: url(./images/marvel\ guardians.jpg);
+  border: 5px black solid;
+  padding: 0px;
+  position: absolute;
+  object-fit: contain; 
 }
 #img-4{
-  background-image: url(./images/marvel\ x-men.jpg);
+  border: 5px black solid;
+  padding: 0px;
+  position: absolute;
+  object-fit: contain; 
 }
 .img-container:hover{
   border: black solid 10px;
 }
 #charcter-card-container{
   flex-grow: 1;
-  width:fit-content;
+  width: fit-content;
   height: fit-content;
   background-color: black;
-  display: flex;
 }
+
+.btnBtn { 
+  height: 250px;
+  width: 1700px;
+  position: relative;
+  max-width: none
+}
+
 .card-cols{
   flex-grow: 1;
   flex-direction: row;
@@ -86,3 +114,4 @@ width: 100%;
 #movie-card{
   background-color: cyan;
 }
+

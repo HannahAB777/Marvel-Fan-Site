@@ -11,10 +11,11 @@ const movieCol = document.getElementById("movie-card");
 cardContainer.classList.add("hide");
 landingbtn.addEventListener("click", function (event) {
   event.preventDefault();
-  landingbtn.classList.add("hide");
-  nav.classList.add("hide");
-  navBtns.classList.remove("hide");
-  cardContainer.classList.remove("hide");
+
+  $('document').ready(myMove("img-1"));
+  $('document').ready(myReMove("img-2"));
+  $('document').ready(myReReMove("img-3"));
+  $('document').ready(myReReReMove("img-4"));
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -51,18 +52,89 @@ landingbtn.addEventListener("click", function (event) {
 
     searchArray(searchID);
   }
-
-  }
+  }  
 });
+
+//IMG 1 Slide
+var id = null;
+function myMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id);
+        landingbtn.classList.add("hide");
+        //Adds hide class to the nav
+        nav.classList.add("hide");
+        removeHides ();
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+//IMG 2 Slide
+var id2 = null;
+function myReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id2);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id2);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
+//IMG 4 Slide
+var id3 = null;
+function myReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id3);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id3);
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+//IMG 3 Slide
+var id4 = null;
+function myReReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id4);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id4);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
+
 // click event for header shown on second page
 navBtns.addEventListener("click", function (event) {
   event.preventDefault();
+  removeAllChildNodes(movieCol);
+  removeAllChildNodes(cardCol);
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-} removeAllChildNodes(movieCol);
-removeAllChildNodes(cardCol);
+  }          
+
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -101,6 +173,12 @@ removeAllChildNodes(cardCol);
     searchArray(searchID);
   }
 });
+
+  function removeHides () {
+    navBtns.classList.remove("hide");
+    cardContainer.classList.remove("hide");
+}
+
 
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
@@ -149,7 +227,7 @@ var wrapper = {
   gamoraMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   draxMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   grootMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
-  rocketracoonMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  rocketraccoonMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   mantisMovies: ["Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   nebulaMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   yonduMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol"],
@@ -169,8 +247,8 @@ var wrapper = {
   kittyprydeMovies: ["X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
   deadpoolMovies: ["Deadpool", "Deadpool 2"],
   mystiqueMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
-  magnetoMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
-  rocketraccoonMovies: [] // TODO ADD elements
+  magnetoMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"]
+  
 };
 
 let icon = "";
@@ -377,6 +455,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
   IMBDrating.textContent = movieRating;
   movieInfo.appendChild(IMBDrating);
 
+
   const movieCardAction = document.createElement("div");
   movieCardAction.classList.add("card-action");
   movieCardEl.appendChild(movieCardAction);
@@ -386,10 +465,4 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
   //append
 
 };
-
-//boop
-
-//Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
-var searchID = guardiansID;
-searchArray(searchID);
 

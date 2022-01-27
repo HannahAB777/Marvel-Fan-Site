@@ -59,3 +59,72 @@ function searchArray (array){
 //Sets searchID to IDarray DO THIS AFTER BUTTON CLICK
 var searchID = avengersID;
 searchArray (searchID);
+
+
+
+var id = null;
+function myMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id);
+        landingbtn.classList.add("hide");
+        //Adds hide class to the nav
+        nav.classList.add("hide");
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+
+var id2 = null;
+function myReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id2);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id2);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
+
+var id3 = null;
+function myReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id3);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id3);
+      } else {
+        pos++;        
+        elem.style.left = pos + '5px'; 
+      }
+    }
+}
+
+var id4 = null;
+function myReReReMove(picture) {
+    var elem = document.getElementById(picture);   
+    var pos = 0;
+    clearInterval(id4);
+    id = setInterval(frame, 10);
+    function frame() {
+      if (pos == 250) {
+        clearInterval(id4);
+      } else {
+        pos++;        
+        elem.style.right = pos + '5px'; 
+      }
+    }
+}
