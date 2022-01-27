@@ -5,12 +5,31 @@
 .hide{
   display: none;
 }
+.btn-large{
+  background-color:#E2001A ;
+}
+.btn-large:hover{
+  background-color: black;
+  color: #E2001A;
+}
+.btn-large:target{
+  background-color: black;
+  color: #E2001A;
+}
+.card-sizing{
+  height: 400px;
+  width: 400px;
+}
 body{
-  display: flex;
+    display: flex;
     min-height: 100vh;
     flex-direction: column;
-  background-color: #E2001A ;
-  position: relative;
+    background-color: black ;
+}
+
+.nav-wrapper{
+justify-content: space-between;
+
 }
 #header{
   border: black 5px solid;
@@ -75,14 +94,24 @@ align-self: center;
 }
 #charcter-card-container{
   flex-grow: 1;
-  width:fit-content;
+  width: fit-content;
   height: fit-content;
   background-color: black;
 }
-.btnBtn {
- 
+
+.btnBtn { 
   height: 250px;
   width: 1700px;
   position: relative;
   max-width: none
 }
+
+.card-cols{
+  flex-grow: 1;
+  flex-direction: row;
+}
+
+#movie-card{
+  background-color: cyan;
+}
+

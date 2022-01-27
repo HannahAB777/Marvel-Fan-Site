@@ -16,8 +16,6 @@ landingbtn.addEventListener("click", function (event) {
   $('document').ready(myReMove("img-2"));
   $('document').ready(myReReMove("img-3"));
   $('document').ready(myReReReMove("img-4"));
-  
-      
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -54,11 +52,9 @@ landingbtn.addEventListener("click", function (event) {
 
     searchArray(searchID);
   }
-
-  }
-
-  
+  }  
 });
+
 //IMG 1 Slide
 var id = null;
 function myMove(picture) {
@@ -131,12 +127,14 @@ function myReReReMove(picture) {
 // click event for header shown on second page
 navBtns.addEventListener("click", function (event) {
   event.preventDefault();
+  removeAllChildNodes(movieCol);
+  removeAllChildNodes(cardCol);
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
-} removeAllChildNodes(movieCol);
-removeAllChildNodes(cardCol);
+  }          
+
 
   const choice = event.target;
   const groupChoice = choice.getAttribute("data-character");
@@ -176,11 +174,11 @@ removeAllChildNodes(cardCol);
   }
 });
 
-
-function removeHides () {
-  navBtns.classList.remove("hide");
-   cardContainer.classList.remove("hide");
+  function removeHides () {
+    navBtns.classList.remove("hide");
+    cardContainer.classList.remove("hide");
 }
+
 
 //DOT POINT 1
 // const avengersID = [Spiderman, Iron Man, Hulk, Thor, Captain America, Black Widow, Hawkeye, Black Panther, Doctor Strange, Antman, Captain Marvel, Nick Fury, Scarlet Witch, Vision]
@@ -268,7 +266,6 @@ function searchMarvelAPI(charID) {
       return response.json();
     })
     .then(function (data) {
-      
 
       //Finds icon Url
       let iconPath = (data.data.results[0].thumbnail.path)
@@ -329,8 +326,6 @@ function searchOMBDAPI(movieString) {
     })
     .then(function (data) {
       console.log(data);
-
-      
 
       //Sets movie from data
       var movie = (data.Title);
@@ -459,6 +454,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
   const IMBDrating = document.createElement("li");
   IMBDrating.textContent = movieRating;
   movieInfo.appendChild(IMBDrating);
+
 
   const movieCardAction = document.createElement("div");
   movieCardAction.classList.add("card-action");
