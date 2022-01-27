@@ -1,5 +1,5 @@
 *{ box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 0px;
   font:'Marvel', sans-serif;
 }
 .hide{
@@ -16,10 +16,13 @@
   background-color: black;
   color: #E2001A;
 }
+
 .card-sizing{
-  height: 1600px;
-  width: 800px;
+ 
+  margin-left: auto;
+  margin-right: auto;
 }
+
 body{
     display: flex;
     min-height: 100vh;
@@ -29,6 +32,7 @@ body{
 
 .nav-wrapper{
 justify-content: space-between;
+margin-bottom: 20px;
 
 }
 #header{
@@ -40,6 +44,7 @@ justify-content: space-between;
 h4{
   text-align: center;
 }
+
 #center-btn{
 display: flex;
 flex-direction: column;
@@ -94,9 +99,10 @@ align-self: center;
 }
 #character-card-container{  
   width: 100%;  
-  background-color: black;
+  
   display: flex;
   flex-direction: row; 
+  justify-content: center;
 }
 
 .btnBtn { 
@@ -114,9 +120,49 @@ align-self: center;
   padding: 10px;
   display: flex;
   justify-items: center;
+  align-items: center;
 }
 
 #movie-card{
   background-color: cyan;
+}
+
+.card {
+  text-align: center; 
+  width: 600px;
+  height: 1100px;  
+  
+}
+.card-content li{
+  text-align: left;
+}
+
+.card-image{
+  width: 100%; 
+  padding: 0px;
+  border: black 10px solid;
+  border-radius: 0px;
+  
+}
+
+.card-image img{
+  height: 600px;
+  padding: 0px;
+  border-radius: 0px;
+}
+
+.card-title p{
+  padding: 25px;
+}
+.fav-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 225px;
+  
+}
+
+.x-menBgColor {
+background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(131,130,130,1) 38%, rgba(97,97,97,1) 100%);
 }
 

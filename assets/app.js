@@ -11,6 +11,7 @@ const movieCol = document.getElementById("movie-card");
 cardContainer.classList.add("hide");
 landingbtn.addEventListener("click", function (event) {
   event.preventDefault();
+  landingbtn.setAttribute("style", "border:none");
 
   $('document').ready(myMove("img-1"));
   $('document').ready(myReMove("img-2"));
@@ -42,10 +43,12 @@ landingbtn.addEventListener("click", function (event) {
 
   }
   if (groupChoice == "x-men") {
+     cardContainer.classList.add("x-menBgColor");
     //Sets Search ID to X-men array
     var searchID = xmenID;
     //Searches XMen Array 
     searchArray(searchID);
+    
 
   if (groupChoice == "favourites"){
     var searchID = favouritesID;
@@ -203,7 +206,7 @@ var wrapper = {
   hawkeyeMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Thor"],
   blackpantherMovies: ["Black Panther", "Avengers Infinity", "Avengers Endgame"],
   doctorstrangeMovies: ["Avengers Infinity", "Avengers Endgame", "Doctor Strange", "Spider-Man No"],
-  antmanMovies: ["Avengers Infinity", "Avengers Endgame", "Ant-Man", "Ant-man and"],
+  antmanMovies: ["Avengers Endgame", "Ant-Man", "Ant-man and"],
   captainmarvelMovies: ["Avengers Endgame", "Marvel"],
   nickfuryMovies: ["Avengers", "Avengers Age", "Avengers Infinity", "Avengers Endgame", "Marvel"],
   scarletwitchMovies: ["Avengers Age", "Avengers Infinity", "Avengers Endgame", "Captain America Civil"],
@@ -257,8 +260,7 @@ let name = "";
 let description = ""
 //DOT POINT 2 - COMPLETE, ADD IN #3
 function searchMarvelAPI(charID) {
-
-  fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257', {
+    fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=aec5f13cdc19947b440061114b5f2054&limit=100&ts=1&hash=7104094cf47456d0119fcaf5b347cfde', {
     method: 'GET', //GET is the default.
     credentials: 'same-origin', // include, *same-origin, omit
     redirect: 'follow', // manual, *follow, error
@@ -280,7 +282,8 @@ function searchMarvelAPI(charID) {
       let description = "Description: " + (data.data.results[0].description)
       //}
       //Finds Marvel Wiki URL
-      let link = "Marvel Wiki: " +(data.data.results[0].urls[1].url);
+      let link = (data.data.results[0].urls[1].url).split("?")[0];
+      let link2 = "Marvel Wiki: " + link;
       //MOVIE API STUFF
       //converts name to lowercase
       let texty = (data.data.results[0].name).toLowerCase();
@@ -296,8 +299,10 @@ function searchMarvelAPI(charID) {
         console.log("missign key", texty4);
       } else {
         //runs search movies array    
-        searchmoviesArray(movieArray);
-        createCard(icon, name, description, link);
+        return searchmoviesArray(movieArray).then(function () {
+          createCard(icon, name, description, link2);
+        });
+       
       }
 
     });
@@ -306,18 +311,22 @@ function searchMarvelAPI(charID) {
 
 //For loop to run API requests for every char in array
 function searchArray(array) {
+  var asd = [];
   for (var i = 0; i < array.length; i++) {
-    //Runs API search for individual ID's
-    
-     setTimeout(searchMarvelAPI(array[i]),2000);
+    asd.push(searchMarvelAPI(array[i]));
+    //Runs API se()arch for individual ID's
+
+    //  setTimeout(),10000);
   }
+
+  Promise.all(asd)
 }
 
 ///////
 
 //OMBD search function
 function searchOMBDAPI(movieString) {
-  fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
+  return fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     method: 'GET',
     credentials: 'same-origin',
     redirect: 'follow'
@@ -326,7 +335,7 @@ function searchOMBDAPI(movieString) {
       return response.json();
     })
     .then(function (data) {
-      
+      console.log(data);
 
       //Sets movie from data
       var movie = "Movie Title: " + (data.Title);
@@ -335,9 +344,10 @@ function searchOMBDAPI(movieString) {
       //Finds plot in data
       var plot = "Plot Summary: " + (data.Plot);
       //Finds IMDB ID
-      var IMBDID = (data.imbdID);
+      var IMDBID = (data.imdbID);
+      console.log(IMDBID)
       //Converts ID to URL
-      var IMBD = "IMDB ULR: " + "https://imdb.com/title/" + IMBDID;
+      var IMDB = "IMDB URL: " + "https://imdb.com/title/" + IMDBID;      
       //Finds rating in data
       var rating = "IMDB Rating: " + (data.imdbRating);
       //Creates poster div
@@ -348,7 +358,7 @@ function searchOMBDAPI(movieString) {
      // moviePoster.setAttribute("src", poster);
       //Appends movieInfo
       //movieInfo.appendChild(moviePoster); movie info needs to be defined
-      movieCard(poster, movie, year, plot, IMBDID, rating, IMBD);
+      movieCard(poster, movie, year, plot, IMDBID, rating, IMDB);
     
 
     });
@@ -360,7 +370,7 @@ function searchmoviesArray(array) {
   var randomChoice = array[Math.floor(Math.random()*array.length)];
  
       //Runs API search for Movie Queries
-    setTimeout(searchOMBDAPI(randomChoice), 2000);
+    return searchOMBDAPI(randomChoice);
 };
 
 
@@ -370,6 +380,13 @@ function createCard(heroImg, heroID, heroScript, heroLink) {
   const card = document.createElement("div");
   card.classList.add("row", "card-sizing");
   cardCol.appendChild(card);
+
+  // cardCol.addEventListener("click", function(event){
+  //   const addFavBtn = $(event.target);
+  //   const targetCardContent = $(addFavBtn).parent();
+  //   const heroTitle = $(targetCardContent).prev(".card-title");
+  //   const heroName = $(heroTitle).text();
+  // });
 
 
   const cardBorder = document.createElement("div");
@@ -401,12 +418,19 @@ function createCard(heroImg, heroID, heroScript, heroLink) {
   heroDescription.textContent = heroScript;
   cardContent.appendChild(heroDescription);
 
-  const heroURL = document.createElement("a");
-  heroURL.setAttribute("href", heroLink);
-  cardContent.appendChild(heroURL);
+  const cardInfo = document.createElement("ul");
+  cardContent.appendChild(cardInfo);
+
+  const linkAnchor = document.createElement("li");
+  cardInfo.appendChild(linkAnchor);
+
+  const marvelURL = document.createElement("a");
+  marvelURL.setAttribute("href", heroLink);
+  marvelURL.textContent = heroLink;
+  linkAnchor.appendChild(marvelURL);
 
   const favBtn = document.createElement("button");
-  favBtn.classList.add("fav-btn", "waves-effect", "waves-light","btn-large");
+  favBtn.classList.add("fav-btn", "waves-effect", "waves-light","btn-large", "align-bottom");
   favBtn.textContent = "Favourite";
   cardContent.appendChild(favBtn);
   
@@ -454,32 +478,24 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
   plotShort.textContent = story;
   movieInfo.appendChild(plotShort);
 
-  const IMBDId = document.createElement("li");
-  IMBDId.textContent = IMBDData;
-  movieInfo.appendChild(IMBDId);
-
   const IMBDrating = document.createElement("li");
   IMBDrating.textContent = movieRating;
-  movieInfo.appendChild(IMBDrating);
+  movieInfo.appendChild(IMBDrating); 
 
+  const linkAnchor = document.createElement("li");
+  movieInfo.appendChild(linkAnchor);
+
+  const externalLink = document.createElement("a");
+  externalLink.setAttribute("href", xLink);
+  externalLink.textContent = xLink;
+  linkAnchor.appendChild(externalLink);
 
   const movieCardAction = document.createElement("div");
   movieCardAction.classList.add("card-action");
   movieCardEl.appendChild(movieCardAction);
 
-  const externalLink = document.createElement("a");
-  externalLink.setAttribute("href", xLink);
-  movieInfo.appendChild(externalLink);
-  //append
+  
+
 
 };
-
-
-//For loop to run API requests for every char in array
-function searchArray (array){
-  for (var i= 0; i< array.length; i++ ){
-    //Runs API search for individual ID's
-  searchMarvelAPI (array[i]);
-}};
-
 
