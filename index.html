@@ -12,6 +12,7 @@
     <title>Marvel Fanclub</title>
 </head>
 <body>
+    <!--navbar for second page showing btns for hero options and favourites-->
     <nav id= "choice-btn"class="header hide">
         <div class="nav-wrapper">
           <ul class="hide-on-med-and-down">
@@ -19,6 +20,7 @@
             <li><a data-character="villans" class="waves-effect waves-light btn-large">Villans</a></li>
             <li><a data-character="guardians" class="waves-effect waves-light btn-large">Guardians of the Galaxy</a></li>
             <li><a data-character="x-men" class="waves-effect waves-light btn-large">X-Men</a></li>
+            <li><a data-character="favourites" class="waves-effect waves-light btn-large">Favourite Characters</a></li>
           </ul>
         </div>
       </nav>
@@ -48,7 +50,8 @@
         </div>
     </div>
             <container id="character-card-container" class="">
-        
+                <div class="card-cols" id= "char-card"></div>
+                <div class="card-cols" id= "movie-card"></div>
             </container>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

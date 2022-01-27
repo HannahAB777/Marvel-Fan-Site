@@ -5,7 +5,17 @@
 .hide{
   display: none;
 }
-
+.btn-large{
+  background-color:#E2001A ;
+}
+.btn-large:hover{
+  background-color: black;
+  color: #E2001A;
+}
+.btn-large:target{
+  background-color: black;
+  color: #E2001A;
+}
 .card-sizing{
   height: 400px;
   width: 400px;
@@ -14,7 +24,10 @@ body{
   display: flex;
     min-height: 100vh;
     flex-direction: column;
-  background-color: #E2001A ;
+  background-color: black ;
+}
+.nav-wrapper{
+justify-content: space-between;
 }
 #header{
   border: black 5px solid;
@@ -63,4 +76,13 @@ width: 100%;
   width:fit-content;
   height: fit-content;
   background-color: black;
+  display: flex;
+}
+.card-cols{
+  flex-grow: 1;
+  flex-direction: row;
+}
+
+#movie-card{
+  background-color: cyan;
 }
