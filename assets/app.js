@@ -1,17 +1,23 @@
 const landingbtn = document.getElementById("center-btn");
 const nav = document.getElementById("header");
 const cardContainer = document.getElementById("character-card-container");
-var searchID = "";
-var movieArray = [];
 const headerDiv = document.getElementById("input-field");
 const navBtns = document.getElementById("choice-btn");
 const cardCol = document.getElementById("char-card");
 const movieCol = document.getElementById("movie-card");
-
+let favouritesID;
+const localStoreChars = localStorage.getItem("character");
+const localStoreCharsArray = JSON.parse(localStoreChars);
+if(localStoreChars == null){
+  favouritesID =[];
+}
+else{
+favouritesID = localStoreCharsArray;}
 cardContainer.classList.add("hide");
+
 landingbtn.addEventListener("click", function (event) {
   event.preventDefault();
-  landingbtn.setAttribute("style", "border:none");
+  landingbtn.setAttribute("style", "border:none");  
 
   $('document').ready(myMove("img-1"));
   $('document').ready(myReMove("img-2"));
@@ -257,7 +263,8 @@ var wrapper = {
 
 let icon = "";
 let name = "";
-let description = ""
+let description = "";
+let charSearchID = ""
 //DOT POINT 2 - COMPLETE, ADD IN #3
 function searchMarvelAPI(charID) {
     fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=aec5f13cdc19947b440061114b5f2054&limit=100&ts=1&hash=7104094cf47456d0119fcaf5b347cfde', {
@@ -277,6 +284,7 @@ function searchMarvelAPI(charID) {
       //Loads Char name from API query
       let name = "Name: " + (data.data.results[0].name);
       //Checks if description for character exists
+      let nameID = (data.data.results[0].id);
       //if (data.data.results[0].description) {  
       //Loads description
       let description = "Description: " + (data.data.results[0].description)
@@ -300,7 +308,7 @@ function searchMarvelAPI(charID) {
       } else {
         //runs search movies array    
         return searchmoviesArray(movieArray).then(function () {
-          createCard(icon, name, description, link2);
+          createCard(nameID, icon, name, description, link2);
         });
        
       }
@@ -376,7 +384,7 @@ function searchmoviesArray(array) {
 
 
 
-function createCard(heroImg, heroID, heroScript, heroLink) {
+function createCard(charSearchID, heroImg, heroID, heroScript, heroLink,) {
   const card = document.createElement("div");
   card.classList.add("row", "card-sizing");
   cardCol.appendChild(card);
@@ -431,10 +439,11 @@ function createCard(heroImg, heroID, heroScript, heroLink) {
 
   const favBtn = document.createElement("button");
   favBtn.classList.add("fav-btn", "waves-effect", "waves-light","btn-large", "align-bottom");
+  favBtn.setAttribute("data-characterid", charSearchID);
   favBtn.textContent = "Favourite";
   cardContent.appendChild(favBtn);
-  
-};
+
+ };
 
 function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, xLink) {
 
@@ -499,3 +508,12 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
 };
 
+cardCol.addEventListener("click", function(event){
+  const addFavBtn = $(event.target);
+  const btnData = $(addFavBtn).data("characterid");
+  console.log(btnData);
+  favouritesID.push(btnData);
+  searchArray(favouritesID);
+  favouritesIDArray = JSON.stringify(favouritesID);
+  localStorage.setItem("character", favouritesIDArray);
+});
