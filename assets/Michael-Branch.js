@@ -128,3 +128,5 @@ function myReReReMove(picture) {
       }
     }
 }
+
+fetch('https://gateway.marvel.com:443/v1/public/characters/' + charID + '?apikey=20e21429471697c0e32c4afdce9f7fb2&limit=100&ts=1&hash=a86036e73c0f0f248814ec5b218bb257'
