@@ -497,6 +497,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
   const externalLink = document.createElement("a");
   externalLink.setAttribute("href", xLink);
+  externalLink.setAttribute("target", "_blank");
   externalLink.textContent ="IMDB URL: " + xLink;
   linkAnchor.appendChild(externalLink);
 
