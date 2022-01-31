@@ -24,7 +24,7 @@ In the assets folder you will find
 3. The javascript used to run the fanpage.
 4. The images used in the project.
 
-## Secreenshots
+## Screenshots
 
 ![Marvel-Project-Screenshot-Lander](./assets/images/lander.jpg)
 ![Marvel-Project-Screenshot-Display-#1](./assets/images/display1.png)

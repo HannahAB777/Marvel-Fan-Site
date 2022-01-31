@@ -512,9 +512,16 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 cardCol.addEventListener("click", function(event){
   const addFavBtn = $(event.target);
   const btnData = $(addFavBtn).data("characterid");
+  const groupChoice = $(addFavBtn).data("character");
   console.log(btnData);
   favouritesID.push(btnData);
+  if (groupChoice == "favourites"){
   searchArray(favouritesID);
   favouritesIDArray = JSON.stringify(favouritesID);
   localStorage.setItem("character", favouritesIDArray);
+  }
+  else{
+  favouritesIDArray = JSON.stringify(favouritesID);
+  localStorage.setItem("character", favouritesIDArray);
+ }
 });
