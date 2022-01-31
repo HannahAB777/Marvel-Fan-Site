@@ -334,7 +334,7 @@ function searchArray(array) {
 
 //OMBD search function
 function searchOMBDAPI(movieString) {
-  return fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
+  return fetch('https://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     method: 'GET',
     credentials: 'same-origin',
     redirect: 'follow'
