@@ -343,7 +343,7 @@ function searchOMBDAPI(movieString) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
+ 
 
       //Sets movie from data
       var movie = "Movie Title: " + (data.Title);
@@ -353,7 +353,7 @@ function searchOMBDAPI(movieString) {
       var plot = "Plot Summary: " + (data.Plot);
       //Finds IMDB ID
       var IMDBID = (data.imdbID);
-      console.log(IMDBID)
+     
       //Converts ID to URL
       var IMDB = "https://imdb.com/title/" + IMDBID;      
       //Finds rating in data
@@ -497,6 +497,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
   const externalLink = document.createElement("a");
   externalLink.setAttribute("href", xLink);
+  externalLink.setAttribute("target", "_blank");
   externalLink.textContent ="IMDB URL: " + xLink;
   linkAnchor.appendChild(externalLink);
 
@@ -510,10 +511,15 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 };
 
 cardCol.addEventListener("click", function(event){
-  const addFavBtn = $(event.target);
+  event.stopPropagation();
+  const addFavBtn = $(event.target);  
   const btnData = $(addFavBtn).data("characterid");
-  const groupChoice = $(addFavBtn).data("character");
-  console.log(btnData);
+
+  if (!btnData){
+    return;
+  }
+  else{
+  const groupChoice = $(addFavBtn).data("character"); 
   favouritesID.push(btnData);
   if (groupChoice == "favourites"){
   searchArray(favouritesID);
@@ -524,4 +530,5 @@ cardCol.addEventListener("click", function(event){
   favouritesIDArray = JSON.stringify(favouritesID);
   localStorage.setItem("character", favouritesIDArray);
  }
+}
 });
