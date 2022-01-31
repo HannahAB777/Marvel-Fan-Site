@@ -52,7 +52,7 @@ flex-grow: 1;
 border: #E2001A 10px solid;
 height: 80%;
 width: 90%;
-
+margin-top: 30px;
 margin-left: auto;
 margin-right: auto;
 align-self: center;
@@ -61,38 +61,44 @@ align-self: center;
 .nav-wrapper{
  background-color: #E2001A;
   color: white;
+  margin-bottom: 30px;
 }
+
 .img-container{
+  
   flex-grow: 1;
   display: inline-flex;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #img-1{
   border: 5px black solid;
   padding: 0px;
   position: absolute;
-  object-fit: contain; 
+  
+  
 }
 
 #img-2{
   border: 5px black solid;
   padding: 0px;
   position: absolute;
-  object-fit: contain; 
+  
 }
 #img-3{
   border: 5px black solid;
   padding: 0px;
   position: absolute;
-  object-fit: contain; 
 }
+  
 #img-4{
   border: 5px black solid;
   padding: 0px;
   position: absolute;
-  object-fit: contain; 
+  
 }
 .img-container:hover{
   border: black solid 10px;
@@ -107,9 +113,10 @@ align-self: center;
 
 .btnBtn { 
   height: 250px;
-  width: 1700px;
+  width: 100%;
   position: relative;
   max-width: none
+  
 }
 
 .card-cols{
@@ -129,7 +136,7 @@ align-self: center;
 
 .card {
   text-align: center; 
-  width: 600px;
+  width: 500px;
   height: 1100px;  
   
 }
@@ -157,7 +164,7 @@ align-self: center;
 .fav-btn {
   position: absolute;
   bottom: 20px;
-  right: 225px;
+  right: 187px;
   
 }
 
