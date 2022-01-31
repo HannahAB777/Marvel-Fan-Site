@@ -196,9 +196,9 @@ const avengersID = [1009610, 1009368, 1009351, 1009664, 1009220, 1009189, 100933
 // const villainsID = [Thanos, Loki, Ultron, Venom, Hela, Killmonger, Green Goblin, Doc Ok, Ronan, Mysterio, Vulture, Ego]
 const villainsID = [1009652, 1009407, 1009685, 1010787, 1011482, 1011289, 1011435, 1009276, 1010344, 1009464, 1009699, 1011060]
 // const xmenID = [Jean Grey, Prof X, Beast, Cyclops, Wolverine, Gambit, Storm, Rogue, Kitty Pride, Deadpool, Mystique, Magneto]
-const xmenID = [1009496, 1009733, 1009175, 1009257, 1009718, 1009313, 1009629, 1009546, 1009508, 1009268, 1009465, 1009417]
+const xmenID = [1009496, 1009504, 1009175, 1009257, 1009718, 1009313, 1009629, 1009546, 1009508, 1009268, 1009465, 1009417]
 // const guardiansID = [Star-Lord, Gamora, Drax, Groot, Rocket, Mantis, Nebula, Yondu, Nova, Cosmo, Adam Warlock]
-const guardiansID = [1010734, 1010763, 1010735, 1010743, 1010744, 1011026, 1010365, 1011542, 1009477, 1011353, 1010354]
+const guardiansID = [1010733, 1010763, 1010735, 1010743, 1010744, 1011026, 1010365, 1011542, 1009477, 1011353, 1010354]
 //////
 
 var wrapper = {
@@ -233,7 +233,7 @@ var wrapper = {
   egoMovies: ["Guardians Of the Galaxy Vol"],
 
   // Guardians Movie Search vars
-  peterquillMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
+  starlordMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   gamoraMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   draxMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
   grootMovies: ["Guardians Of The", "Guardians Of the Galaxy Vol", "Avengers Infinity", "Avengers Endgame"],
@@ -246,7 +246,7 @@ var wrapper = {
   adamwarlockMovies: ["Guardians Of the Galaxy Vol"],
 
   // X-Men Movie Search vars
-  charlesxavierMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
+  professorxMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
   cyclopsMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
   wolverineMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix", "Logan", "The Wolverine", "X-Men Origins"],
   jeangreyMovies: ["X-Men", "X2", "X-Men The Last", "X-Men First", "X-Men Days", "X-Men Apocalypse", "Dark Phoenix"],
@@ -291,7 +291,7 @@ function searchMarvelAPI(charID) {
       //}
       //Finds Marvel Wiki URL
       let link = (data.data.results[0].urls[1].url).split("?")[0];
-      let link2 = "Marvel Wiki: " + link;
+      let link2 = link;
       //MOVIE API STUFF
       //converts name to lowercase
       let texty = (data.data.results[0].name).toLowerCase();
@@ -334,7 +334,7 @@ function searchArray(array) {
 
 //OMBD search function
 function searchOMBDAPI(movieString) {
-  return fetch('http://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
+  return fetch('https://www.omdbapi.com/?t=' + movieString + '&apikey=499dbfaf', {
     method: 'GET',
     credentials: 'same-origin',
     redirect: 'follow'
@@ -355,7 +355,7 @@ function searchOMBDAPI(movieString) {
       var IMDBID = (data.imdbID);
       console.log(IMDBID)
       //Converts ID to URL
-      var IMDB = "IMDB URL: " + "https://imdb.com/title/" + IMDBID;      
+      var IMDB = "https://imdb.com/title/" + IMDBID;      
       //Finds rating in data
       var rating = "IMDB Rating: " + (data.imdbRating);
       //Creates poster div
@@ -434,7 +434,8 @@ function createCard(charSearchID, heroImg, heroID, heroScript, heroLink,) {
 
   const marvelURL = document.createElement("a");
   marvelURL.setAttribute("href", heroLink);
-  marvelURL.textContent = heroLink;
+  marvelURL.setAttribute("target", "_blank");
+  marvelURL.textContent = "Mavel Wiki URL: " + heroLink;
   linkAnchor.appendChild(marvelURL);
 
   const favBtn = document.createElement("button");
@@ -496,7 +497,7 @@ function movieCard(moviePoster, movies, yearMade, story, IMBDData, movieRating, 
 
   const externalLink = document.createElement("a");
   externalLink.setAttribute("href", xLink);
-  externalLink.textContent = xLink;
+  externalLink.textContent ="IMDB URL: " + xLink;
   linkAnchor.appendChild(externalLink);
 
   const movieCardAction = document.createElement("div");
